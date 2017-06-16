@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    h1 #{title}
+    form(method="POST", action="/articles/add")
+        #form-group
+            label Název:
+            input.form-control(name="title", type="text")
+        #form-group
+            label Pro koho:
+            input.form-control(name="worker", type="text")
+        //- #form-group
+        //-     select
+        //-         - repeation = [ 'no-repeat', 'day', 'week', 'month']
+        //-         each item in repeation
+        //-             option(selected=articles.repeat == item) #{item}
+        #form-group
+            label Obsah:
+            textarea.form-control(name="body")
+        br
+        input.btn.btn-primary(type="submit", value="Submit")
