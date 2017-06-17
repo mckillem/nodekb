@@ -1,0 +1,22 @@
+<% include partials/header %>
+<h1><%= title %></h1>
+<form method="POST" action="/articles/edit/<%= article._id %>">
+  <div id="form-group">
+    <label>Název:</label>
+    <input name="title" type="text" class="form-control" value="<%= article.title %>"/>
+  </div>
+  <div id="form-group">
+    <label>Autor:</label>
+    <input name="author" type="text" class="form-control" value="<%= user.name %>"/>
+  </div>
+  <div id="form-group">
+    <label>Pro koho:</label>
+    <input name="worker" type="text" class="form-control" value="<%= article.worker %>"/>
+  </div>
+  <div id="form-group">
+    <label>Obsah:</label>
+    <textarea name="body" class="form-control"><%= article.body %></textarea>
+  </div><br/>
+  <input type="submit" value="Potvrdit" class="btn btn-primary"/>
+</form>
+<% include partials/footer %>

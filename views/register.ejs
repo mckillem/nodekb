@@ -1,0 +1,26 @@
+<%- include("partials/header") %>
+<h1>Registrace</h1>
+  <form method="POST" action="/users/register">
+    <div class="form-group">
+      <label>Jméno:</label>
+      <input name="name" type="text" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label>Email:</label>
+      <input name="email" type="text" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label>Uživatelské jméno:</label>
+      <input name="username" type="text" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label>Heslo:</label>
+      <input name="password" type="password" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label>Znovu zadej heslo:</label>
+      <input name="password2" type="password" class="form-control"/>
+    </div><br/>
+    <input type="submit" value="Registrovat" class="btn btn-primary"/>
+  </form>
+<%- include("partials/footer") %>

@@ -29,7 +29,7 @@ let Article = require("./models/article");
 
 // load view engine
 app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "pug");
+app.set("view engine", "ejs");
 
 // body parser middleware
 // parse application/x-www-form-urlencoded
@@ -40,6 +40,13 @@ app.use(bodyParser.json());
 // set public folder
 app.use(express.static(path.join(__dirname, "public")));
 
+// global variables
+app.use(function(req, res, next) {
+    res.locals.user = null;
+    res.locals.errors = null;
+    next();
+});
+
 // express session middleware
 app.use(session({
   secret: 'keyboard cat',
@@ -48,7 +55,7 @@ app.use(session({
 }));
 
 // express messages middleware
-app.use(require('connect-flash')());
+app.use(require('connect-flash')()); // načítá se znovu
 app.use(function (req, res, next) {
   res.locals.messages = require('express-messages')(req, res);
   next();

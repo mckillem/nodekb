@@ -1,0 +1,14 @@
+<% include partials/header %>
+<h1>Login</h1>
+  <form method="POST" action="/users/login">
+    <div id="form-group">
+      <label>Uživatelské jméno:</label>
+      <input name="username" type="text" class="form-control"/>
+    </div>
+    <div id="form-group">
+      <label>Heslo:</label>
+      <input name="password" type="password" class="form-control"/>
+    </div><br/>
+    <input type="submit" value="Přihlásit" class="btn btn-primary"/>
+  </form>
+<% include partials/footer %>

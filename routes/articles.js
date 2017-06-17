@@ -6,6 +6,7 @@ let Article = require("../models/article");
 // user model
 let User = require("../models/user");
 
+
 // add route
 router.get("/add", ensureAuthenticated, function(req, res) {
     res.render("add_article", {
@@ -15,10 +16,16 @@ router.get("/add", ensureAuthenticated, function(req, res) {
 
 // add submit POST route
 router.post("/add", function(req, res) {
+    const title = req.body.title;
+    const author = req.user._id;
+    const worker = req.body.worker;
+    const body = req.body.body;
+
     req.checkBody("title", "Je požadován název").notEmpty();
     // req.checkBody("author", "Je požadován autor").notEmpty();
     req.checkBody("worker", "Je požadován pracovník").notEmpty();
     req.checkBody("body", "Je požadován obsah").notEmpty();
+
 
     // get errors
     let errors = req.validationErrors();
@@ -29,11 +36,12 @@ router.post("/add", function(req, res) {
             errors: errors
         });
     } else {
-        let article = new Article();
-        article.title = req.body.title;
-        article.author = req.user._id;
-        article.worker = req.body.worker;
-        article.body = req.body.body;
+        let article = new Article({
+            title: title,
+            author: author,
+            worker: worker,
+            body: body
+        });
 
         article.save(function(err) {
             if(err) {

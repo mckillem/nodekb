@@ -1,0 +1,13 @@
+<% include partials/header %>
+<h1><%= article.title %></h1>
+<h5>napsal <%= author %></h5>
+<h5>pro <%= worker %></h5>
+<p><%= article.body %></p>
+<hr>
+<% if (user) { %>
+    <% if (user.id) { %>
+        <a class="btn btn-default" href="/articles/edit/<%= article._id %>">Upravit</a>
+        <a href="#" class="btn btn-danger delete-article" data-id="<%= article._id %>">Smazat</a>
+    <% } %>
+<% } %>
+<% include partials/footer %>
