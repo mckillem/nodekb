@@ -14,10 +14,9 @@ $(document).ready(function() {
             }
         });
     });
-
-    
 });
 
+// obsluha select
 function showUserId() {
         var pokus = document.getElementById("pokus");
         var select = document.getElementById("select");
