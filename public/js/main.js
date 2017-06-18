@@ -14,4 +14,15 @@ $(document).ready(function() {
             }
         });
     });
+
+    
 });
+
+function showUserId() {
+        var pokus = document.getElementById("pokus");
+        var select = document.getElementById("select");
+        var worker = document.getElementById("worker");
+        worker.value = select[select.selectedIndex].value;
+        console.log(select[select.selectedIndex].value);
+        pokus.appendChild(worker);
+    }

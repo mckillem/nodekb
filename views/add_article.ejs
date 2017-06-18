@@ -5,9 +5,26 @@
       <label>Název:</label>
       <input name="title" type="text" class="form-control">
     </div>
-    <div class="form-group">
+    <div id="pokus" class="form-group">
       <label>Pro koho:</label>
-      <input name="worker" type="text" class="form-control">
+      <!--<ul class="list-group">
+        <% users.forEach(function(user) { %>
+            <li class="list-group-item">
+                <a id="insertUserId"><%= user.name %></a><label id="userId" hidden><%= user._id %></label>
+            </li>
+        <% }); %>
+      </ul>-->
+
+     <select id="select" class="form-control" onchange="showUserId()">
+       <option value="empty">Vyber</option>
+        <% users.forEach(function(user) { %>
+            <option value="<%= user._id %>" id="<%= user._id %>">
+                <%= user.name %>
+            </option>
+        <% }); %>
+      </select>
+      
+      <input id="worker" name="worker" type="text" class="form-control">
     </div>
     <div class="form-group">
       <label>Obsah:</label>

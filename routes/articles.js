@@ -9,13 +9,23 @@ let User = require("../models/user");
 
 // add route
 router.get("/add", ensureAuthenticated, function(req, res) {
-    res.render("add_article", {
-        title: "Přidej úkol"
+     User.find({}, function(err, users) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render("add_article", {
+                title: "Přidej úkol",
+                users: users
+            });
+        }
     });
 });
 
 // add submit POST route
 router.post("/add", function(req, res) {
+
+   
+
     const title = req.body.title;
     const author = req.user._id;
     const worker = req.body.worker;
@@ -23,7 +33,7 @@ router.post("/add", function(req, res) {
 
     req.checkBody("title", "Je požadován název").notEmpty();
     // req.checkBody("author", "Je požadován autor").notEmpty();
-    req.checkBody("worker", "Je požadován pracovník").notEmpty();
+    req.check("worker", "Je požadován pracovník").notEmpty();
     req.checkBody("body", "Je požadován obsah").notEmpty();
 
 
@@ -31,10 +41,18 @@ router.post("/add", function(req, res) {
     let errors = req.validationErrors();
 
     if(errors) {
-        res.render("add_article", {
-            title: "Přidej úkol",
-            errors: errors
-        });
+        User.find({}, function(err, users) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render("add_article", {
+                title: "Přidej úkol",
+                users: users,
+                errors: errors
+            });
+        }
+    });
+        
     } else {
         let article = new Article({
             title: title,

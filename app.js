@@ -26,6 +26,7 @@ const app = express();
 
 // bring in models
 let Article = require("./models/article");
+// let User = require("./models/user");
 
 // load view engine
 app.set("views", path.join(__dirname, "views"));
@@ -44,6 +45,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(function(req, res, next) {
     res.locals.user = null;
     res.locals.errors = null;
+    // res.locals.allUsers = User.find({}, function (err, docs) {
+    //     res.json(docs);
+    // });
     next();
 });
 
